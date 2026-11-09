@@ -1,0 +1,9 @@
+{
+  "appId": "org.dynscore.alameenexamflow",
+  "appName": "AL-AMEEN EXAMFLOW",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  }
+}

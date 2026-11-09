@@ -1,0 +1,19 @@
+OPTIONAL: BUILD THE PACKAGES IN GITHUB ACTIONS (NO LOCAL PC BUILD NEEDED)
+
+This source pack includes three workflows under .github/workflows:
+- deploy-pwa.yml: publishes the PWA to GitHub Pages (requires Pages enabled and repository Actions permissions).
+- build-android.yml: builds a debug APK on GitHub-hosted Ubuntu runner.
+- build-windows.yml: builds a Windows NSIS installer on a GitHub-hosted Windows runner.
+
+After uploading the full contents of this source pack into a GitHub repository:
+1. Open repository Settings > Pages and select GitHub Actions as the source.
+2. Open Actions and run "Deploy EXAMFLOW PWA to GitHub Pages".
+3. Run "Build EXAMFLOW Android APK"; download its artifact from the completed workflow.
+4. Run "Build EXAMFLOW Windows Installer"; download its artifact from the completed workflow.
+
+The Android workflow produces a DEBUG APK for testing, not a signed production release.
+A signed Android release requires a private keystore and secure GitHub secrets; do not
+put keystore passwords or signing keys in source files.
+The Windows installer is unsigned unless a code-signing certificate is configured.
+The PWA is hosted publicly if the GitHub repository/pages are public; do not upload
+private student records or backup JSON files into the repository.

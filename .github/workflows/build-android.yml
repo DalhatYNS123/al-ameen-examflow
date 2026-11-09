@@ -1,0 +1,38 @@
+name: Build EXAMFLOW Android APK
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'android-capacitor/**'
+      - '.github/workflows/build-android.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android-capacitor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Capacitor dependencies
+        run: npm install
+      - name: Generate Android project
+        run: npx cap add android
+      - name: Sync web application
+        run: npx cap sync android
+      - name: Build debug APK
+        working-directory: android-capacitor/android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AL-AMEEN-EXAMFLOW-Android-debug-APK
+          path: android-capacitor/android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
