@@ -24,6 +24,8 @@ jobs:
         run: npm install
       - name: Generate Android project
         run: npx cap add android
+      - name: Generate official AL-AMEEN launcher icons
+        run: npx capacitor-assets generate --android
       - name: Sync web application
         run: npx cap sync android
       - name: Build debug APK
